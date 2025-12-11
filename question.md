@@ -142,7 +142,7 @@ In TypeScript, `never` and `void` are two distinct types that serve different pu
 /** What is difference between framework base website and normal website (none
 framework) **/
 ```
-
+answer: A framework-based website is built using a pre-defined set of tools, libraries, and conventions provided by a web development framework (e.g., React, Angular, Vue.js). These frameworks offer structured ways to build and manage web applications, often including features like component-based architecture, state management, routing, and more. This can lead to faster development times, better maintainability, and scalability.
 ## 7.
 
 ```jsx
@@ -180,7 +180,7 @@ Complete Task
 }
 /** Code block end */
 ```
-
+answer: The issue with the current implementation is that the `tasks` state in the `TaskCounter` component is not preserved when switching between "Alice" and "Bob". Each time the `TaskCounter` component is re-rendered due to the change in `isPersonAlice`, a new instance of the component is created, and its state is reset to 0.
 ## 8.
 
 ```js
@@ -250,7 +250,43 @@ return (
 }
 /** Code block end */
 ```
-
+answer:
+```jsx
+// To improve the code, we can use React's Context API to avoid prop drilling. This way, we can provide the `name` and `age` values at a higher level and consume them directly in the components that need them without passing them through multiple layers of components.
+import React, { createContext, useContext, useState } from 'react'; 
+const UserContext = createContext();
+function ParentComponent() {
+  const [name, setName] = useState("Naro");
+  const [age, setAge] = useState(12);
+  
+  return (
+    <UserContext.Provider value={{ name, age }}>
+      <div>
+        <ChildComponent />
+        <GrandchildComponent />
+      </div>
+    </UserContext.Provider>
+  );
+}
+function ChildComponent() {
+  const { name, age } = useContext(UserContext);
+  return (
+    <div>
+      <p>Name: {name}</p>
+      <GrandchildComponent />
+    </div>
+  );
+}
+function GrandchildComponent() {
+  const { name, age } = useContext(UserContext);
+  return (
+    <div>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+```
 ## 10.
 
 ```jsx
@@ -283,5 +319,4 @@ return (
 Developer Code Quality Test
 Please fork the code base below and return it as answer, we
 will read through the code after we got the answer.
-URL: https://codesandbox.io/p/devbox/pre-test-
-task-management-3rz3sd
+URL: https://codesandbox.io/p/devbox/pre-test-task-management-3rz3sd
