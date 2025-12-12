@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .container {
+        font-size: 14px;
+
+      }
+
+      .container .header {
+        font-size: 18px;
+      }
+
+      .container .shop-list {
+        list-style: none;
+        margin-left: -15px;
+      }
+
+      .container .shop-list li.item {
+        color: green;
+      }
+
+      /*.container .shop-list .item {
+
+color: blue;
+}*/
+      /* Q1. /* Explain why does this color not works, and how to fix make it work on 1st list  */
+
+      /*  answer:  
+       
+        這個選擇器沒有作用是因為它試圖選擇所有具有 class "shop-list" 的元素下的 class "item" 元素，並將其顏色設置為藍色。然而，由於有兩個列表（ol 和 ul）都具有 class "shop-list"，這個選擇器會影響到兩個列表中的所有項目，而不僅僅是第一個列表中的項目。
+      */
+    .container .content > .shop-list:first-child .item {
+        color: blue;
+      }
+
+      /*Q2. Write styling make every other line give background color to next one */
+      .container .shop-list li.item:nth-child(odd) {
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">5/8 外出確認表</div>
+      <div class="content">
+        <ol class="shop-list">
+          <li class="item">麵包</li>
+          <li class="item">短袖衣服</li>
+          <li class="item">飲用水</li>
+          <li class="item">帳篷</li>
+        </ol>
+        <ul class="shop-list">
+          <li class="item">暈車藥</li>
+          <li class="item">感冒藥</li>
+          <li class="item">丹木斯</li>
+          <li class="item">咳嗽糖漿</li>
+        </ul>
+      </div>
+      <div class="footer">以上僅共參考</div>
+    </div>
+  </body>
+
+</html>
